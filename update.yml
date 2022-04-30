@@ -1,0 +1,12 @@
+---
+- hosts: miners
+  remote_user: ubuntu
+  become: yes
+  strategy: free 
+
+  vars_files:
+    - vars/main.yml
+    - vars/phala.yml
+
+  roles:
+    - docker

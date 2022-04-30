@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  pruntime:
+    image: {{ phala_registry }}:5000/phalanetwork/phala-pruntime:{{ phala_pruntime_version }}
+    restart: always
+    hostname: pruntime
+    volumes:
+      - 'pruntime-data:/root/data'
+    devices:
+      - "/dev/sgx/enclave:/dev/sgx/enclave"
+      - "/dev/sgx/provision:/dev/sgx/provision"
+    ports:
+      - '8000:8000'
+    environment:
+      - ENABLE_KICK_API=1
+volumes:
+  pruntime-data:
+

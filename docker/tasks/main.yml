@@ -1,0 +1,28 @@
+---
+    - name: Create installation directory
+      file:
+        path=/opt/deploy
+        state=directory
+        mode=0755
+
+    - name: Copy docker composer file
+      template:
+        src: docker-compose.yml.j2
+        dest: "/opt/deploy/docker-compose.yml"
+        owner: root
+        group: root
+        mode: 0644
+        backup: no
+
+    - name: Docker pull images
+      shell: "/usr/bin/docker-compose pull"
+      register: docker_pull_result
+      args:
+        chdir: "/opt/deploy"
+
+    - name: "Start worker framework"
+      shell: "/usr/bin/docker-compose up -d"
+      register: docker_pull_result
+      args:
+        chdir: "/opt/deploy"
+

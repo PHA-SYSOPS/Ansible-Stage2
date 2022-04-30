@@ -1,0 +1,16 @@
+[miners]
+node-727-1
+node-256-6
+node-806-4
+node-145-1
+node-11-2
+node-11-1
+node-780-3
+node-152-2
+
+[miners:vars]
+ansible_python_interpreter=/usr/bin/python3
+
+[all:vars]
+ansible_connection=ssh
+ansible_user=ubuntu
